@@ -8,22 +8,20 @@ import { getChangelogPath, prependToChangelog } from "./io.js";
 import path from "node:path";
 
 async function ensureApiKey(): Promise<string> {
-  // Tier 1: Check standard process environment
   if (process.env.GEMINI_API_KEY) {
     return process.env.GEMINI_API_KEY;
   }
 
-  // Tier 2: Check for a local .env file in the user's current project working directory
   const localEnvPath = path.resolve(process.cwd(), ".env");
+
   if (fs.existsSync(localEnvPath)) {
     const envContent = fs.readFileSync(localEnvPath, "utf8");
     const match = envContent.match(/^GEMINI_API_KEY\s*=\s*(.*)$/m);
     if (match && match[1]) {
-      return match[1].trim().replace(/['"']/g, ""); // Clean up any quotes
+      return match[1].trim().replace(/['"']/g, "");
     }
   }
 
-  // Tier 3: Key is entirely missing. Stop and instruct the user cleanly.
   console.error("\nError: GEMINI_API_KEY is missing.");
   console.log(
     "------------------------------------------------------------------",
