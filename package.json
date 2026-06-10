@@ -1,0 +1,46 @@
+{
+  "name": "@forgata/changelog-cli",
+  "version": "0.2.2",
+  "description": "An AI-driven branch-based changelog generator powered by Gemini",
+  "keywords": [
+    "changelog",
+    "gemini",
+    "ai",
+    "git",
+    "semver",
+    "cli"
+  ],
+  "bin": {
+    "changelog-cli": "dist/main.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "homepage": "https://github.com/Forgata/changelog-cli#readme",
+  "bugs": {
+    "url": "https://github.com/Forgata/changelog-cli/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Forgata/changelog-cli.git"
+  },
+  "license": "MIT",
+  "author": "Forgata",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "public"
+  },
+  "type": "module",
+  "main": "dist/main.js",
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.2",
+    "typescript": "^6.0.3"
+  },
+  "dependencies": {
+    "@google/genai": "^2.8.0"
+  }
+}
