@@ -66,6 +66,19 @@ GEMINI_API_KEY=AIzaSy...your_key
 
 ```
 
+### Optimizing Commit Messages (Optional)
+
+For the best results with Gemini's analysis, we recommend configuring GitHub Copilot to strictly follow the Conventional Commits standard. Add this to your VS Code `settings.json` (that is, assuming you're using GitHub Copilot):
+
+```json
+"github.copilot.chat.commitMessageGeneration.instructions": [
+    {
+      "text": "Format as a strict, concise Conventional Commit. 1. Summary line (max 50 chars): Use 'type(scope): description' where scope is the specific file or module (e.g., 'feat(main):'). 2. One blank line. 3. Body line (max 72 chars): Exactly one sentence detailing the technical change inside that file. Keep total very length short so it is optimized for Gemini changelog parsing.",
+    },
+  ],
+
+```
+
 ---
 
 ## Usage
