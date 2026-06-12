@@ -1,6 +1,6 @@
 {
   "name": "@forgata/changelog-cli",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "An AI-driven branch-based changelog generator powered by Gemini",
   "keywords": [
     "changelog",
