@@ -1,6 +1,6 @@
 {
   "name": "@forgata/changelog-cli",
-  "version": "0.2.2",
+  "version": "1.0.0",
   "description": "An AI-driven branch-based changelog generator powered by Gemini",
   "keywords": [
     "changelog",
@@ -27,7 +27,6 @@
   "license": "MIT",
   "author": "Forgata",
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com",
     "access": "public"
   },
   "type": "module",
