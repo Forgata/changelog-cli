@@ -64,7 +64,10 @@ async function main() {
     if (fs.existsSync(getChangelogPath())) {
       const currentChangelog = fs.readFileSync(getChangelogPath(), "utf8");
 
-      const fingerprintRegex = new RegExp(``, "g");
+      const fingerprintRegex = new RegExp(
+        `<!-- commit-hash: ${currentHeadHash} -->`,
+        "g",
+      );
 
       if (fingerprintRegex.test(currentChangelog)) {
         console.log(
@@ -111,10 +114,11 @@ async function main() {
 
     const versionHeader = `## [${newVersion ? newVersion : "Unreleased"}] - ${currentDate}\n\n`;
 
-    const finalMarkdown = analysisResult.markdown.replace(
-      "## [VERSION] - YYYY-MM-DD",
-      versionHeader,
-    );
+    const finalMarkdown =
+      analysisResult.markdown.replace(
+        "## [VERSION] - YYYY-MM-DD",
+        versionHeader,
+      ) + `\n<!-- commit-hash: ${currentHeadHash} -->\n`;
 
     prependToChangelog(finalMarkdown);
 
