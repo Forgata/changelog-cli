@@ -106,8 +106,8 @@ async function main() {
     }
 
     const currentDate = new Date().toISOString().split("T")[0];
+    const versionHeader = `## [${newVersion ? newVersion : "Unreleased"}] - ${currentDate}\n`;
 
-    const versionHeader = `## [${newVersion ? newVersion : "Unreleased"}] - ${currentDate}`;
     const finalMarkdown = analysisResult.markdown.replace(
       "## [VERSION] - YYYY-MM-DD",
       `${versionHeader}\n`,
