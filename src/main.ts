@@ -32,9 +32,9 @@ async function ensureApiKey(): Promise<string> {
   console.log(
     "Please expose it in your environment or add it to your local .env file:",
   );
-  console.log("\n  Windows (CMD):   set GEMINI_API_KEY=your_key_here");
-  console.log('  Linux/macOS:     export GEMINI_API_KEY="your_key_here"');
-  console.log("  Project .env:    GEMINI_API_KEY=your_key_here");
+  console.log("\n   Windows (CMD):   set GEMINI_API_KEY=your_key_here");
+  console.log('   Linux/macOS:     export GEMINI_API_KEY="your_key_here"');
+  console.log("   Project .env:    GEMINI_API_KEY=your_key_here");
   console.log(
     "------------------------------------------------------------------\n",
   );
@@ -64,7 +64,9 @@ async function main() {
     if (fs.existsSync(getChangelogPath())) {
       const currentChangelog = fs.readFileSync(getChangelogPath(), "utf8");
 
-      if (currentChangelog.includes(``)) {
+      const fingerprintRegex = new RegExp(``, "g");
+
+      if (fingerprintRegex.test(currentChangelog)) {
         console.log(
           "The latest updates from this branch are already documented in CHANGELOG.md. Skipping run to prevent duplication.",
         );
@@ -106,11 +108,12 @@ async function main() {
     }
 
     const currentDate = new Date().toISOString().split("T")[0];
-    const versionHeader = `## [${newVersion ? newVersion : "Unreleased"}] - ${currentDate}\n`;
+
+    const versionHeader = `## [${newVersion ? newVersion : "Unreleased"}] - ${currentDate}\n\n`;
 
     const finalMarkdown = analysisResult.markdown.replace(
       "## [VERSION] - YYYY-MM-DD",
-      `${versionHeader}\n`,
+      versionHeader,
     );
 
     prependToChangelog(finalMarkdown);
